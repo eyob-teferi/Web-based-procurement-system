@@ -16,7 +16,7 @@ export function CreateInvoice() {
 
 export function ExamineReq(){
   return(
-    <a href="/admin-dashboard" className="rounded-md border p-2 hover:bg-gray-100">
+    <a href="/admin-dashboard/fullinfo" className="rounded-md border p-2 hover:bg-gray-100">
       <EyeIcon className="w-5" />
     </a>
   )
