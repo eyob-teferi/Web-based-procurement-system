@@ -2,7 +2,58 @@ import Bid from "../ui/bid";
 import { lusitana } from "../ui/fonts";
 import Search from "../ui/search";
 
-
+const data=[
+    {
+        name:"paper",
+        quantity:45,
+        description:"We want 4 dozen of paper"
+    },
+    {
+        name:"paper",
+        quantity:45,
+        description:"We want 4 dozen of paper"
+    },
+    {
+        name:"paper",
+        quantity:45,
+        description:"We want 4 dozen of paper"
+    },
+    {
+        name:"paper",
+        quantity:45,
+        description:"We want 4 dozen of paper"
+    },
+    {
+        name:"paper",
+        quantity:45,
+        description:"We want 4 dozen of paper"
+    },
+    {
+        name:"paper",
+        quantity:45,
+        description:"We want 4 dozen of paper"
+    },
+    {
+        name:"paper",
+        quantity:45,
+        description:"We want 4 dozen of paper"
+    },
+    {
+        name:"paper",
+        quantity:45,
+        description:"We want 4 dozen of paper"
+    },
+    {
+        name:"paper",
+        quantity:45,
+        description:"We want 4 dozen of paper"
+    },
+    {
+        name:"paper",
+        quantity:45,
+        description:"We want 4 dozen of paper"
+    }
+]
 export default async function Page(){
     return(
         <>
@@ -14,7 +65,7 @@ export default async function Page(){
         <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
         <Search placeholder="Search bids..." />
         </div>
-        <Bid />
+        <Bid data={data} />
         </div>
         </>
 

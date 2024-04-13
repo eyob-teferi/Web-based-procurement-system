@@ -12,15 +12,13 @@ import { Button } from './button';
 
 export default function ReqForm({departments}){
     return(
-        <form className="space-y-3 m-8">
-        <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
-        <h1 className={`${lusitana.className} mb-3 text-2xl`}>
-          Request an Item or a Service
-        </h1>
+        <form >
+        <div className="rounded-md bg-gray-50 p-4 md:p-6">
+        
         <div className="w-full">
           <div>
-            <label
-              className="mb-3 mt-5 block text-xs font-medium text-gray-900"
+            <label 
+              className="mb-2 block text-sm font-medium"
               htmlFor="department"
             >
               Department
@@ -49,7 +47,7 @@ export default function ReqForm({departments}){
           </div>
           <div className="mt-4">
             <label
-              className="mb-3 mt-5 block text-xs font-medium text-gray-900"
+              className="mb-2 block text-sm font-medium"
               htmlFor="name"
             >
               Item or service
@@ -70,7 +68,7 @@ export default function ReqForm({departments}){
             
           <div className="mt-4">
             <label
-              className="mb-3 mt-5 block text-xs font-medium text-gray-900"
+              className="mb-2 block text-sm font-medium"
               htmlFor="quantity"
             >
               Quantity
@@ -90,7 +88,7 @@ export default function ReqForm({departments}){
             </div>
             <div className="mt-4">
             <label
-              className="mb-3 mt-5 block text-xs font-medium text-gray-900"
+              className="mb-2 block text-sm font-medium"
               htmlFor="price"
             >
               Price
@@ -110,7 +108,7 @@ export default function ReqForm({departments}){
             </div>
             </div>
             <div className="mb-4">
-              <label htmlFor="description" className="mb-3 mt-5 block text-xs font-medium text-gray-900">
+              <label htmlFor="description" className="mb-2 block text-sm font-medium">
                 Description
               </label>
               </div>
@@ -123,17 +121,11 @@ export default function ReqForm({departments}){
                 className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
               ></textarea>
             </div>
-            <button
-              type="submit"
-              className="mt-6 block w-full px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
-              >
-                Submit
-            </button>
+            <div className="mt-6 flex justify-end gap-4">
+            <Button type="submit">Submit</Button>
+            </div>
         </div>
   
-        <div className="flex h-8 items-end space-x-1">
-          {/* Add form errors here */}
-        </div>
       </div>
     </form>
     )
