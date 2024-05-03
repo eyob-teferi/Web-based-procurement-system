@@ -1,16 +1,11 @@
 import BidForm from "@/app/ui/bid-form";
 import { lusitana } from "@/app/ui/fonts";
+import { getAllBids } from "../page";
 
 
-const data=[
-    {
-        name:"paper",
-        quantity:45,
-        description:"We want 4 dozen of paper"
-    }
-]
 
 export default async function Page(){
+    const data = await getAllBids();
     return(
 
         <div className="w-full">

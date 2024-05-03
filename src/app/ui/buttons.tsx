@@ -1,3 +1,4 @@
+'use client'
 import { EyeIcon, PencilIcon, PlusIcon, TrashIcon,CheckIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 
@@ -14,9 +15,9 @@ export function CreateInvoice() {
   );
 }
 
-export function ExamineReq(){
+export function ExamineReq({reqId}:{reqId:string}){
   return(
-    <a href="/admin-dashboard/fullinfo" className="rounded-md border p-2 hover:bg-gray-100">
+    <a href={`/admin-dashboard/fullinfo/${reqId}`} className="rounded-md border p-2 hover:bg-gray-100">
       <EyeIcon className="w-5" />
     </a>
   )
@@ -54,12 +55,24 @@ export function UpdateReq() {
   );
 }
 
-export function DeleteReq() {
+export function DeleteReq({reqId}: {reqId: string}) {
+  async function handleDeleteRequistion(reqId: string) {
+    const res = await fetch(`http://localhost:1323/admin/deleterequistion/${reqId}`, {
+      method: 'DELETE',
+      credentials:'include'
+    })
+
+    if(!res.ok) {
+      console.log("err toast")
+    }
+
+    console.log("success toast")
+  }
 
   //const deleteInvoiceWithId = deleteInvoice.bind(null, id);
   return (
     <form>
-      <button className="rounded-md border p-2 hover:bg-gray-100">
+      <button onClick={() => handleDeleteRequistion(reqId)} className="rounded-md border p-2 hover:bg-gray-100">
         <span className="sr-only">Delete</span>
         <TrashIcon className="w-5" />
       </button>

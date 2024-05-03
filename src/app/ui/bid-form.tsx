@@ -1,14 +1,43 @@
-
+'use client'
 import {
     CurrencyDollarIcon,
     UserCircleIcon,
   } from '@heroicons/react/24/outline';
 import { Button } from './button';
+import {  RequisitionType } from '../bids/page';
+import { useForm } from 'react-hook-form';
 
-export default async function BidForm({data}){
+export default function BidForm({data}: {data: RequisitionType}){
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
     return(
         <div>
-            <form>
+            <form onSubmit={handleSubmit(async (formdata) => {
+formdata.requistionId = data.id
+const formData = new FormData(); 
+formData.append('price', formdata.price)
+formData.append('requistionId', data.id)
+formData.append("imageFile", formdata.imageFile[0])
+console.log(formdata.imageFile[0])
+
+      
+      const res = await fetch('http://localhost:1323/user/createbid' , {
+        method: 'POST',
+     
+        credentials:'include',
+        body: formData
+      }) 
+      if(!res.ok) {
+        console.log(res)
+        throw new Error('Failed to fetch data')
+      }
+      //todo
+      console.log('success toast todo')
+
+    })}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
         
       <div className="mb-4">
@@ -21,9 +50,9 @@ export default async function BidForm({data}){
                 id="name"
                 name="name"
                 type="text"
-                defaultValue={data[0].name}
+                defaultValue={data.itemName}
                 placeholder="Item Service Name"
-                required
+                disabled
                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-2 text-sm outline-2 placeholder:text-gray-500"
               />
             </div>
@@ -41,9 +70,9 @@ export default async function BidForm({data}){
                 id="quantity"
                 name="quantity"
                 type="number"
-                defaultValue={data[0].quantity}
+                defaultValue={data.quantity}
                 placeholder="Enter Quantity"
-                required
+                disabled
                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-2 text-sm outline-2 placeholder:text-gray-500"
               />
               
@@ -60,9 +89,10 @@ export default async function BidForm({data}){
             <div className="relative">
               <input
                 id="price"
-                name="price"
+                
                 type="number"
                 step="0.01"
+                {...register('price', {required: true, valueAsNumber: true})}
                 placeholder="Enter Birr amount"
                 required
                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
@@ -74,7 +104,7 @@ export default async function BidForm({data}){
 
 
 
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <label htmlFor="range" className="mb-2 block text-sm font-medium">
             Delivery range
           </label>
@@ -82,7 +112,7 @@ export default async function BidForm({data}){
             <select
               id="range"
               name="range"
-              required
+             
               className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-2 text-sm outline-2 placeholder:text-gray-500"
             >
                 <option value="" disabled>
@@ -108,7 +138,7 @@ export default async function BidForm({data}){
             </select>
             
           </div>
-        </div>
+        </div> */}
 
 
 
@@ -120,9 +150,8 @@ export default async function BidForm({data}){
             <div className="relative">
               <input
                 id="doc"
-                name="Documents"
+                {...register('imageFile', {required: true})}
                 type="file"
-                required
                 placeholder="In PDF format"
                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-2 text-sm outline-2 placeholder:text-gray-500"
               />
@@ -140,7 +169,7 @@ export default async function BidForm({data}){
               <textarea
                 id="description"
                 name="description"
-                required
+               
                 className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-6 text-sm outline-2 placeholder:text-gray-500"
               ></textarea>
         </div>

@@ -42,8 +42,16 @@ export default function LoginForm(props: LoginFormProps) {
         throw new Error('Failed to fetch data')
       }
       if(props.loginEndpoint.includes('admin')){
-        console.log('hey')
+    
       router.replace('/admin-dashboard')
+      }
+      if(props.loginEndpoint.includes('user')){
+        console.log('hey user')
+      router.replace('/bids')
+      }
+      if(props.loginEndpoint.includes('department')){
+        console.log('hey dept')
+      router.replace('/department-dashboard')
       }
     })} className="space-y-3 m-8">
       <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">

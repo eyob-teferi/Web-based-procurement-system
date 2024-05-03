@@ -3,16 +3,34 @@ import { lusitana } from '@/app/ui/fonts';
 import Search from '@/app/ui/search'
 import { cookies } from 'next/headers';
 import { redirect, useRouter } from 'next/navigation';
+import { CustomJwtPayload } from '../login/page';
+import { jwtDecode } from 'jwt-decode';
 
-export default async function Page(){
+export default async function Page({
+    searchParams,
+  }: {
+    searchParams?: {
+      itemName?: string;
+      page?: number;
+      status?: string;
+    };
+  }){
+    const itemName = searchParams?.itemName || '';
+  const currentPage = Number(searchParams?.page) || 1;
+  const status = searchParams?.status || '';
     const cookieStore = cookies()
     const jwt = cookieStore.get('jwt')?.value;
+    let decodedJwt: CustomJwtPayload | null = null
 
     console.log(jwt)
 
     if(!jwt) {
         redirect('/admin-dashboard/login')
     }
+    decodedJwt = jwtDecode(jwt);
+    if(decodedJwt && decodedJwt.role !== 'admin'){
+        redirect(`/admin-dashboard/login`) 
+        }
     return(
         <>
         <div className="w-full">
@@ -23,7 +41,7 @@ export default async function Page(){
         <Search placeholder="Search requsitions..." />
         </div>
         </div>
-        <ReqTable />
+        <ReqTable itemName={itemName} currentPage={currentPage} status={status}/>
         
         </>
     )

@@ -5,7 +5,7 @@ import { cookies } from 'next/headers'
 
 import { RequisitionTable } from "@/app/lib/definition"
 
-interface Requisition {
+export interface Requisition {
   id:string;
   departmentName: string;
   departmentId:string;
@@ -14,13 +14,14 @@ interface Requisition {
   price: number;
   createdAt:Date;
   status: string;
+  description: string;
 }
 
-async function getAllRequistions(): Promise<Requisition[] | null > {
+async function getAllRequistions(itemName: string, currentPage: number, status: string): Promise<Requisition[]> {
   const cookieStore = cookies()
   const jwt = cookieStore.get('jwt')?.value;
   if (jwt) {
-    const res = await fetch('http://localhost:1323/admin/getrequistions', {headers: {
+    const res = await fetch(`http://localhost:1323/admin/getrequistions?itemName=${itemName}&status=${status}`, {headers: {
       Cookie: `jwt=${jwt};`
   }})
 
@@ -33,12 +34,20 @@ async function getAllRequistions(): Promise<Requisition[] | null > {
   
     return res.json()
   }
-return null
+throw new Error('err')
   }
 
 
-export default async function ReqTable() {
-  const requisitions = await getAllRequistions();
+export default async function ReqTable({
+  itemName,
+  currentPage,
+  status
+}: {
+  itemName: string;
+  currentPage: number;
+  status: string;
+}) {
+  const requisitions = await getAllRequistions(itemName, currentPage, status);
  
 
   return (
@@ -99,9 +108,9 @@ export default async function ReqTable() {
                 </td>
                 <td className="whitespace-nowrap py-3 pl-6 pr-3">
                   <div className="flex justify-end gap-3">
-                    <ExamineReq  />
-                    <AcceptReq />
-                    <DeleteReq  />
+                    <ExamineReq  reqId={requistion.id}/>
+                    {/* <AcceptReq /> */}
+                    <DeleteReq  reqId={requistion.id}/>
                   </div>
                 </td>
               </tr>

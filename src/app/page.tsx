@@ -1,9 +1,8 @@
-import Image from "next/image";
 import LoginForm from '@/app/ui/login-form';
 
 export default function Home() {
   return (
-    <LoginForm loginEndpoint="/" />
+    <LoginForm loginEndpoint="http://localhost:1323/user/login" />
   )
     
 }

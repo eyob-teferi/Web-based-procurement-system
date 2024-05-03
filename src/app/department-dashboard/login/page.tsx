@@ -3,8 +3,7 @@ import LoginForm from '@/app/ui/login-form'
 import React from 'react'
 import { JwtPayload, jwtDecode } from "jwt-decode";
 import { redirect } from 'next/navigation'
-export interface CustomJwtPayload extends JwtPayload {
-  id: string;
+interface CustomJwtPayload extends JwtPayload {
     role: string;
 }
 
@@ -15,14 +14,16 @@ const Page = () => {
     if(rawJwt != undefined) {
     decodedJwt = jwtDecode(rawJwt);
 
+    console.log(decodedJwt)
+
 }
-if(decodedJwt && decodedJwt.role === 'admin'){
-redirect(`/admin-dashboard`) 
+if(decodedJwt && decodedJwt.role === 'department_admin'){
+redirect(`/department-dashboard`) 
 }
 
 
   return (
-   <LoginForm loginEndpoint='http://localhost:1323/admin/login' />
+   <LoginForm loginEndpoint='http://localhost:1323/department/login' />
   )
 }
 

@@ -19,11 +19,12 @@ export default function SideNav() {
 
 
  async function handleSignoutClick() {
-  console.log('i run')
-    const res = await signOut()
-    if(pathname.includes('/admin'))
-router.replace('/admin-dashboard/login',)
-    
+     await signOut()
+router.replace('/admin-dashboard/login')
+
+
+
+  
   }
   return (
     <div className="flex h-full flex-col px-3 py-4 md:px-2">

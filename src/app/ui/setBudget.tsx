@@ -41,7 +41,7 @@ export default function SetBudget({departments}: {departments: Department[]}) {
         console.log(res)
         throw new Error('Failed to fetch data')
       }
-      console.log('worked')
+     
     })}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
         
@@ -59,7 +59,7 @@ export default function SetBudget({departments}: {departments: Department[]}) {
               <option value="" disabled>
                 Select a department
               </option>
-              {departments.map((department, index) => (
+              {departments.map((department) => (
                 <option key={department.ID} value={department.ID} >
                   {department.departmentName}
                 </option>
