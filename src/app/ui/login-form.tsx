@@ -18,7 +18,7 @@ export default function LoginForm() {
         <div className="w-full">
           <div>
             <label
-              className="mb-3 mt-5 block text-xs font-medium text-gray-900"
+              className="mb-2 block text-sm font-medium"
               htmlFor="email"
             >
               Email
@@ -37,7 +37,7 @@ export default function LoginForm() {
           </div>
           <div className="mt-4">
             <label
-              className="mb-3 mt-5 block text-xs font-medium text-gray-900"
+              className="mb-2 block text-sm font-medium"
               htmlFor="password"
             >
               Password
@@ -57,9 +57,7 @@ export default function LoginForm() {
           </div>
         </div>
         <LoginButton />
-        <div className="flex h-8 items-end space-x-1">
-          {/* Add form errors here */}
-        </div>
+        <a className={`${lusitana.className} hover:text-blue-600`} href="/supplier-reg">Register as a supplier</a>
       </div>
     </form>
   );
@@ -67,7 +65,7 @@ export default function LoginForm() {
 
 function LoginButton() {
   return (
-    <Button className="mt-4 w-full">
+    <Button className="mt-4 mb-4 w-full">
       Log in <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
     </Button>
   );
