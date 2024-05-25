@@ -6,12 +6,13 @@ import { redirect } from "next/navigation";
 
 console.log('set budget page run')
 export interface Department {
-    ID:string;
+    id:string;
     departmentName: string;
     departmentBudget: number;
+    departmentAdminId?: string;
   }
 
-async function getAllDepartments(): Promise<Department[] > {
+export async function getAllDepartments(): Promise<Department[] > {
     const cookieStore = cookies()
     const jwt = cookieStore.get('jwt')?.value;
 

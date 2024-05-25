@@ -56,13 +56,12 @@ export default function Search({ placeholder }: { placeholder: string }) {
       />
       <MagnifyingGlassIcon className="absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
     </div>
-    {!pathname.includes('user') &&  <div className="relative">
+    {!pathname.includes('bids') &&  <div className="relative">
       <label htmlFor="status">
         Status
       </label>
             <select
               id="status"
-              name="range"
              defaultValue={searchParams.get('status')?.toString()}
              onChange={(e) => {
               handleStatusChange(e.target.value);

@@ -16,14 +16,27 @@ const links = [
   { name: 'Requsitions',
     href: '/admin-dashboard',
     icon: DocumentDuplicateIcon },
+  { name: 'Bids',
+    href: '/admin-dashboard/bids',
+    icon: DocumentDuplicateIcon },
   {
-    name: 'CreateDep',
-    href: '/admin-dashboard/createdep',
+    name: 'AssignAdmin',
+    href: '/admin-dashboard/assign-admin',
+    icon: PlusIcon,
+  },
+  {
+    name: 'CreateDepartment',
+    href: '/admin-dashboard/create-department',
     icon: PlusIcon,
   },
   { name: 'SetBudget',
     href: '/admin-dashboard/setbudget', 
-    icon: CurrencyDollarIcon },
+    icon: CurrencyDollarIcon
+   },
+  { name: 'ManageAdmins',
+    href: '/admin-dashboard/manage-admins', 
+    icon: CurrencyDollarIcon
+   },
 ];
 
 export default function NavLinks() {

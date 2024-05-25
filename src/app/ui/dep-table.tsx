@@ -31,6 +31,10 @@ interface ReqTableProps {
 export default async function ReqTable(props: ReqTableProps) {
   const requisitions = await getDepartmentRequistions(props.departmentId);
 
+  if (requisitions.length === 0) {
+    return <div className="flex justify-center">There are no requisitions, please create one</div>
+  }
+
   return (
     <div className="mt-6 flow-root">
       <div className="inline-block min-w-full align-middle">
@@ -90,7 +94,7 @@ export default async function ReqTable(props: ReqTableProps) {
                   <td className="whitespace-nowrap py-3 pl-6 pr-3">
                     <div className="flex justify-end gap-3">
                       <UpdateReq  />
-                      <DeleteReq  />
+                      <DeleteReq  reqId={requistion.id}/>
                     </div>
                   </td>
                 </tr>

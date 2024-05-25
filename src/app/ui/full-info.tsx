@@ -1,4 +1,5 @@
 'use client'
+import toast from "react-hot-toast/headless";
 import { Requisition } from "./admin-table";
 import { Button } from "./button";
 
@@ -11,11 +12,10 @@ export default  function FullInfo({requisition}: {requisition: Requisition}){
         credentials:'include',
       }) 
       if(!res.ok) {
-        console.log(res)
-        throw new Error('Failed to fetch data')
+  toast.error("something went wrong",{  position: 'top-center'})
       }
 
-      console.log('success toast')
+     toast.success("requisition approved!",{  position: 'top-center'})
     }
     return(
         <div>

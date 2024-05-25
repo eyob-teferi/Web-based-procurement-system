@@ -59,8 +59,8 @@ export default function SetBudget({departments}: {departments: Department[]}) {
               <option value="" disabled>
                 Select a department
               </option>
-              {departments.map((department) => (
-                <option key={department.ID} value={department.ID} >
+              {departments.map((department,index) => (
+                <option key={index} value={department.id} >
                   {department.departmentName}
                 </option>
               ))}
