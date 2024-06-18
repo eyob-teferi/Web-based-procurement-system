@@ -20,6 +20,11 @@ const links = [
     href: '/department-dashboard/request',
     icon: PlusIcon,
   },
+  {
+    name: 'Offers',
+    href: '/department-dashboard/offers',
+    icon: PlusIcon,
+  },
   
 ];
 

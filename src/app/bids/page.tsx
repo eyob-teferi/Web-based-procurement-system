@@ -1,60 +1,53 @@
+import { cookies } from "next/headers";
 import Bid from "../ui/bid";
 import { lusitana } from "../ui/fonts";
 import Search from "../ui/search";
+import { redirect } from "next/navigation";
 
-const data=[
-    {
-        name:"paper",
-        quantity:45,
-        description:"We want 4 dozen of paper"
-    },
-    {
-        name:"paper",
-        quantity:45,
-        description:"We want 4 dozen of paper"
-    },
-    {
-        name:"paper",
-        quantity:45,
-        description:"We want 4 dozen of paper"
-    },
-    {
-        name:"paper",
-        quantity:45,
-        description:"We want 4 dozen of paper"
-    },
-    {
-        name:"paper",
-        quantity:45,
-        description:"We want 4 dozen of paper"
-    },
-    {
-        name:"paper",
-        quantity:45,
-        description:"We want 4 dozen of paper"
-    },
-    {
-        name:"paper",
-        quantity:45,
-        description:"We want 4 dozen of paper"
-    },
-    {
-        name:"paper",
-        quantity:45,
-        description:"We want 4 dozen of paper"
-    },
-    {
-        name:"paper",
-        quantity:45,
-        description:"We want 4 dozen of paper"
-    },
-    {
-        name:"paper",
-        quantity:45,
-        description:"We want 4 dozen of paper"
+export interface RequisitionType {
+    id:string;
+    itemName: string;
+    quantity: number;
+    description: string;
+    createdAt: Date
+}
+
+export async function getAllBids(itemName: string): Promise<RequisitionType[]> {
+    const cookieStore = cookies()
+    const jwt = cookieStore.get('jwt')?.value;
+
+   if(!jwt) {redirect('/')}
+
+      const res = await fetch(`http://localhost:1323/user/requistions?status=approved&itemName=${itemName}`, {headers: {
+        Cookie: `jwt=${jwt};`
+    }})
+
+ 
+  
+      if (!res.ok) {
+        //todo
+      }
+  
+  
+    
+      return res.json()
+    
+   
     }
-]
-export default async function Page(){
+
+
+export default async function Page({
+    searchParams,
+  }: {
+    searchParams?: {
+      itemName?: string;
+      page?: number;
+      status?: string;
+    };
+  }){
+    const itemName = searchParams?.itemName || '';
+  const currentPage = Number(searchParams?.page) || 1;
+    const data = await getAllBids(itemName)
     return(
         <>
             

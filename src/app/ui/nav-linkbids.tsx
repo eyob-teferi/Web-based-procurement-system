@@ -14,7 +14,10 @@ import clsx from 'clsx';
 const links = [
     { name: 'Bids',
     href: '/bids',
-    icon: DocumentDuplicateIcon }
+    icon: DocumentDuplicateIcon },
+    { name: 'Create Gigs',
+    href: '/create-gig',
+    icon: DocumentDuplicateIcon },
 ];
 
 export default function NavLinksBids() {

@@ -9,3 +9,5 @@ export type RequisitionTable = {
     Description: string;
     status: 'Accepted' | 'Rejected' | 'pending';
   };
+
+  
